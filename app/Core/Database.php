@@ -30,18 +30,7 @@ class Database {
     
   }
 
-
-
-  public function getDataProduct($id){
-
-    $query = "SELECT * FROM produk WHERE id_produk = '$id'" ;
-    $result = $this->mysqli->query($query);
-
-    $result->fetch_assoc() ;
-
-    return $result ;
-
-  }
+  /* Produk */
 
   public function addProduct($nama_produk, $tanggal, $harga, $img_produk, $provinsi, $detail_lokasi, $img_provinsi){
 
@@ -49,15 +38,6 @@ class Database {
     $this->mysqli->query($sql);
 
   }
-
-  // public function showDataID($id, $id_name, $table){
-
-  //   $query = "SELECT * FROM $table WHERE $id_name = $id" ;
-  //   $result = $this->mysqli->query($query);
-
-  //   return $result->fetch_assoc();
-    
-  // }
 
   public function updateDataImageProduk($id_produk, $nama_coloumn, $img ){
 
@@ -78,6 +58,20 @@ class Database {
     
     $sql = "DELETE FROM $table_name WHERE $column = '$id' " ;
     $this->mysqli->query($sql);
+
+  }
+
+  /* Filtering Data Produk */
+
+  public function showDataFiltered($provinsi, $tanggal, $table ){
+
+    $reply = [];
+    $sql = "SELECT id_produk, nama_produk, provinsi, harga, tanggal FROM $table WHERE provinsi = '$provinsi' AND tanggal >= '$tanggal' ";
+    $result = $this->mysqli->query($sql);
+
+    while($row = $result->fetch_assoc()) 
+      $reply[] = $row;
+    return $reply ;
 
   }
 
