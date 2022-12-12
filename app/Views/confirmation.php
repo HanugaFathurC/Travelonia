@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="costume-margin">
-              <p>IDR 50.000</p>
+              <p><?php echo "Rp ". number_format(($data['data-produk']['harga'] *  $data['data-buyer']['jumlah_pembelian']), 2, ',','.' )    ?></p>
             </div>
 
             <hr class="costume-hr" />
@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="costume-margin">
-              <p>January 1, 2023</p>
+              <p><?php echo date("D", strtotime($data['data-produk']['tanggal'])) . ", " . date("d-M-Y", strtotime($data['data-produk']['tanggal'])) ?></p>
             </div>
             <hr class="costume-hr" />
 
@@ -46,26 +46,27 @@
                 <img src="<?php echo $GLOBALS['path']?>/assets/icons/icon-merchant.png" alt="icon" width="30px" />
               </div>
               <div class="flex-grow-1 pt-2 ms-3 mt-2">
-                <p class="text-white">Payment</p>
-              </div>
+               <p class="text-white">Metode Payment</p>
+            </div>
             </div>
             <div class="costume-margin">
-              <p>Bank</p>
+              <p class="text-white"><?php echo $data['data-buyer']['metode_pembayaran']?></p>
+
             </div>
           </div>
 
           <div class="col-md-8 bg-white text-center border rounded-3 p-4 ">
             <!-- Ini buat icon dan detail Pemesan-->
       
-            <form>
+            <form method="POST" action="<?php echo $GLOBALS['path']?>/confirmation/transaction?id_produk=<?php echo $data['data-produk']['id_produk'] ?> & id_buyer=<?php echo $data['data-buyer']['id_pembeli'] ?>" enctype="multipart/form-data">
                 <h3 class="mt-4 mb-3"><b>Confirm Your Payment</b></h3>
                 <div class="col-md-12 bg-light text-dark border rounded-3 p-4 mb-3">
                   <h4>Harap transfer sesuai jumlah pembayaran, hingga digit terakhir.</h4>
                   <p>Jika jumlah yang ditransfer tidak sesuai, proses verifikasi pembayaran bisa terhambat</p>
                 </div>
-                <input class="form-control form-control-sm p-2 mb-4 bg-primary text-white" type="file" id="formFile">
-                  <button class="mx-auto  btn btn-success" type="button"><a class="text-decoration-none text-reset" href="<?php echo $GLOBALS['path']?>/success">Payment Confirmation</a></button>
-            </form>
+                <input class="form-control form-control-sm p-2 mb-4 bg-primary text-white" name="fileConfirmation" type="file" id="fileConfirmation" required>
+                  <input class="mx-auto  btn btn-success" type="submit" value="Confirm" ></input>
+            </form >
 
           </div>
 

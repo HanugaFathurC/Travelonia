@@ -30,6 +30,15 @@ class Database {
     
   }
 
+  public function getDataId($id,$column_name, $table){
+
+    $query = "SELECT * FROM $table WHERE $column_name = $id " ;
+    $result = $this->mysqli->query($query)->fetch_assoc() ;
+
+    return $result ;
+
+  }
+
   /* Produk */
 
   public function addProduct($nama_produk, $tanggal, $harga, $img_produk, $provinsi, $detail_lokasi, $img_provinsi){
@@ -73,6 +82,44 @@ class Database {
       $reply[] = $row;
     return $reply ;
 
+  }
+  
+  /* Insert Data Buyer */
+
+  public function addDataBuyer($nama_pembeli, $no_hp, $email, $jumlah_pembelian, $metode_pembayaran){
+
+    $sql = "INSERT INTO pembeli( nama_pembeli, no_hp, email, jumlah_pembelian, metode_pembayaran ) VALUES ('$nama_pembeli', '$no_hp', '$email', '$jumlah_pembelian', '$metode_pembayaran' ) " ;
+    $this->mysqli->query($sql) ;
+
+    return $this->mysqli->insert_id ;
+
+  }
+
+  /* Insert Data Transaction  */
+
+  public function insertTransaction($file, $status, $id_produk, $id_pembeli) {
+  
+    $sql = "INSERT INTO transaksi(bukti_transfer, status, id_produk, id_pembeli ) VALUES ('$file', '$status' , '$id_produk', '$id_pembeli')" ;
+    $this->mysqli->query($sql) ;
+  }
+
+  /* Transaction */
+
+  public function getAllTransaction(){
+
+    $reply = [];
+    $sql = "SELECT id_transaksi, nama_pembeli, nama_produk, jumlah_pembelian, no_hp, email, bukti_transfer, status FROM transaksi JOIN produk ON transaksi.id_produk = produk.id_produk JOIN pembeli ON transaksi.id_pembeli = pembeli.id_pembeli" ;
+    $result = $this->mysqli->query($sql);
+
+    while($row = $result->fetch_assoc()) 
+      $reply[] = $row;
+    return $reply ;
+  
+  }
+
+  public function changeStatus($status, $id){
+    $sql = "UPDATE transaksi SET status='$status' WHERE id_transaksi='$id' " ;
+    $this->mysqli->query($sql);
   }
 
 
