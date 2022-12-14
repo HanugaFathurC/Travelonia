@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use LDAP\Result;
 
 class Database {
 
@@ -75,7 +77,7 @@ class Database {
   public function showDataFiltered($provinsi, $tanggal, $table ){
 
     $reply = [];
-    $sql = "SELECT id_produk, nama_produk, provinsi, harga, tanggal FROM $table WHERE provinsi = '$provinsi' AND tanggal >= '$tanggal' ";
+    $sql = "SELECT id_produk, nama_produk, provinsi, harga, tanggal FROM $table WHERE provinsi = '$provinsi' AND tanggal = '$tanggal' ";
     $result = $this->mysqli->query($sql);
 
     while($row = $result->fetch_assoc()) 
@@ -122,9 +124,38 @@ class Database {
     $this->mysqli->query($sql);
   }
 
+  /* Dashboard */
+
+  public function getDataStatus(){
+
+    $reply = [];
+    $sql = "SELECT status, COUNT(*) AS 'Jumlah' FROM transaksi JOIN produk ON transaksi.id_produk = produk.id_produk JOIN pembeli ON transaksi.id_pembeli = pembeli.id_pembeli GROUP BY status ";
+    $result = $this->mysqli->query($sql) ;
+
+    while($row = $result->fetch_assoc()) 
+      $reply[] = $row;
+    return $reply ;
+  }
+
+  public function getSumTransaction(){
+    $reply = [];
+
+    $sql = "SELECT COUNT(id_transaksi) AS 'Total Transaksi' FROM transaksi JOIN produk ON transaksi.id_produk = produk.id_produk JOIN pembeli ON transaksi.id_pembeli = pembeli.id_pembeli " ;
+    $result = $this->mysqli->query($sql) ;
+
+    while($row = $result->fetch_assoc()) 
+      $reply[] = $row;
+    return $reply ;
+  }
 
   
+  /* Login */
 
+  public function getDataAdmin($username, $password){
+    $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$password' " ;
+    return $this->mysqli->query($sql)->fetch_assoc() ;
+  
+  }
   
 
 }

@@ -4,10 +4,16 @@ class ProductsController extends Controller {
 
   public function index(){
 
+    session_start();
 
-   $dataProducts = $this->model('DataProducts')->showProducts();
-   return $this->view('products', ['data-produk' => $dataProducts]) ;
-   
+    $dataProducts = $this->model('DataProducts')->showProducts();
+    
+    if($_SESSION['login'] == 'sukses') {
+      return $this->view('products', ['data-produk' => $dataProducts]) ;
+    } else {
+      header('location:http://localhost/Travelonia/public/login') ;
+    }
+
 
   }
 

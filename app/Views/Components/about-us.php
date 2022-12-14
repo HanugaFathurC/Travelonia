@@ -6,6 +6,6 @@
             and select various destinations and locations to visit. 
             As well as offering <br> 
             popular destinations and locations in your city.</p>
-          <p class="fst-italic fs-6 pt-3 pb-5">“Your vacation is in your hands”</p>
+            <p class="fst-italic fs-6 pt-3 pb-5  anim-typewriter line-text">“Your vacation is in your hands”</p>
         </section>
 </article>

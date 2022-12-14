@@ -128,7 +128,8 @@
     </div>
 </div>
 
-    <?php require_once '../app/Views/Components/cdn-bootsrap.php' ?>
+<?php  require_once '../app/Views/Components/cdn-bootstrap.php' ?> 
+
 
 </body> 
 

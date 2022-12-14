@@ -3,12 +3,21 @@
 class TransactionsController extends Controller {
 
   public function index(){
+
+    session_start();
+
     $dataTransactions = $this->model('DataTransactions')->getAllData();
-    return $this->view('transactions', ['datas-transaction' => $dataTransactions]) ;
+
+    if($_SESSION['login'] == 'sukses') {
+      return $this->view('transactions', ['datas-transaction' => $dataTransactions]) ;
+    } else {
+      header('location:http://localhost/Travelonia/public/login') ;
+    }
+    
   }
 
   public function statusSukses($id){
-   $sql = $this->model('DataTransactions')->changeSukses($id);
+   $this->model('DataTransactions')->changeSukses($id);
    header('location:http://localhost/Travelonia/public/transactions') ;
   }
 

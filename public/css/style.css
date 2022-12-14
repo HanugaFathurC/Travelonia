@@ -1,3 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 /* Home Page */
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
@@ -21,10 +28,6 @@ p.card-text {
   height: 10hv;
 }
 
-.custom-warna-nav {
-  color: #171717;
-}
-
 article.custome-section1 {
   background: url("/Travelonia/public/assets/forest.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -34,6 +37,90 @@ article.custome-section1 {
 
 .custome-button2 {
   width: 100px;
+}
+
+/* Navigasi */
+
+.navbar {
+  box-shadow: 0 12px 20px rbga(0, 0, 0, 0.1);
+}
+
+ul.navbar-nav {
+  list-style: none;
+}
+ul.navbar-nav li.nav-item a {
+  transition: all 0.3 ease 0s;
+  color: #121212;
+}
+
+ul.navbar-nav li.nav-item a:hover {
+  color: #228b72;
+}
+
+
+.custom-warna-nav {
+  color: #171717;
+}
+
+
+.line-text {
+  position: relative;
+  top: 50%;
+  width: 24em;
+  margin: 0 auto;
+  border-right: 2px solid rgba(255, 255, 255, 0.75);
+  font-size: 180%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);
+}
+
+.custom-warna-nav {
+  color: #171717;
+}
+
+/* Animation About Us*/
+.anim-typewriter {
+  animation: typewriter 4s steps(44) 1s 1 normal both, blinkTextCursor 500ms steps(44) infinite normal;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 24em;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+/* Animation Home Location and Destination */
+
+/* div.costume-animation {
+  transition: transform 0.2s;
+}
+
+div.costume-animation:hover {
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+} */
+
+@keyframes coba {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /* Detail Page */
@@ -57,9 +144,7 @@ article.custome-section2 {
   margin-bottom: 30px;
 }
 
-.custom-warna-nav {
-  color: #171717;
-}
+
 
 .custome-text-harga {
   font-family: "Padauk", sans-serif;
@@ -83,3 +168,59 @@ hr.costume-hr {
   color: white;
   font-weight: bold;
 }
+
+/* Sidebar */
+
+div.side-nav {
+    background: #461966;
+}
+  
+
+
+ul.nav-links {
+  list-style: none;
+  position: relative;
+}
+
+ul.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 14px;
+  display: flex;
+  align-items: center;
+}
+
+ul.nav-links li a i {
+  font-size: 22px;
+  margin-right: 20px;
+}
+ul.nav-links li:hover a {
+  color: #0d74f5;
+  transition: 0.5s;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+  
+
+  ul.nav-links {
+    padding: 0px;
+    margin-left: 20px;
+  }
+
+
+  .nav-links li a p {
+    display: none;
+  }
+
+  .nav-links li:hover a {
+    justify-content: center;
+    color: #0d74f5;
+    transition: 0.5s;
+    background-color: #fff;
+  }
+}
+

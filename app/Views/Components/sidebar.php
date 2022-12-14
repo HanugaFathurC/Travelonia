@@ -1,5 +1,5 @@
-<div class="col-auto  col-md-3 col-xl-2 px-sm-2 px-0 my-3 shadow-lg bg-body rounded">
-            <div class="d-flex flex-column  align-items-center align-items-sm-start px-3 pt-5  text-dark min-vh-100">
+<div class="col-auto side-nav vh-100 col-md-3 col-xl-2 px-sm-2 px-0 my-3 shadow-lg rounded">
+            <!-- <div class="d-flex flex-column  align-items-center align-items-sm-start px-3 pt-5  text-dark min-vh-100">
                 <h1 class="fs-3 d-none d-sm-inline">Admin Area</h1>
                 <ul class="nav nav-pills flex-column my-5 align-items-center align-items-sm-start">
                     <li class="nav-item">
@@ -36,4 +36,44 @@
                           <span class="ms-1 fs-5 d-none d-sm-inline text-danger">Sign Out</span>
                 </a>
             </div>
-        </div>
+        </div> -->
+
+
+      <nav class="p-3">
+        <img class="img-fluid bg-light rounded  mx-auto mt-5 mb-3 d-flex" src="<?php echo $GLOBALS['path']?>/assets/admin/<?php echo $_SESSION['ava'] ?>" class="logo-img" width="100px; ?>" />
+        <p class="d-none text-white mb-5 text-center d-lg-block"><?php echo $_SESSION['username'] ?></p>
+        <ul class="nav-links">
+          <li>
+            <a href="<?php echo $GLOBALS['path']?>/admin"><i class="fa-solid fa-house-user"></i>
+              <p class="pt-3">Dashboard</p></a>
+          </li>
+          <li>
+            <a  href="<?php echo $GLOBALS['path']?>/products"
+              ><i class="fa-solid fa-cart-shopping"></i>
+              <p class="pt-3">Product</p></a
+            >
+          </li>
+          <li>
+            <a  href="<?php echo $GLOBALS['path']?>/transactions" 
+              ><i class="fa-solid fa-wallet"></i>
+              <p class="pt-3">Transaction</p></a
+            >
+          </li>
+          <li>
+            <a href="<?php echo $GLOBALS['path']?>/profile" >
+              <i class="fa-sharp fa-solid fa-id-card"></i>
+              <p class="pt-3">Profile</p>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo $GLOBALS['path']?>/login/logout" ><i class="fa-solid fa-right-from-bracket text-danger"></i>
+              <p class="pt-3 text-danger">Sign out</p></a >
+          </li>
+        
+        </ul>
+
+      </nav>
+
+</div>
+
+  
