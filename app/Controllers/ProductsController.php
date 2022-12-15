@@ -4,10 +4,16 @@ class ProductsController extends Controller {
 
   public function index(){
 
+    session_start();
 
-   $dataProducts = $this->model('DataProducts')->showProducts();
-   return $this->view('products', ['data-produk' => $dataProducts]) ;
-   
+    $dataProducts = $this->model('DataProducts')->showProducts();
+    
+    if($_SESSION['login'] == 'sukses') {
+      return $this->view('products', ['data-produk' => $dataProducts]) ;
+    } else {
+      header('location:http://localhost/Travelonia/public/login') ;
+    }
+
 
   }
 
@@ -16,7 +22,7 @@ class ProductsController extends Controller {
       $nama_produk = $_POST['nama_produk'];
       $tanggal = $_POST['tanggal'];
       $harga = $_POST['harga'];
-      $provinsi = $_POST['provinsi'];
+      $provinsi = ucwords( $_POST['provinsi']);
       $detail_lokasi = $_POST['detail_lokasi'];
 
       $img_produk = $_FILES['img_produk']['name'];
@@ -36,19 +42,6 @@ class ProductsController extends Controller {
   }
 
   public function deleteProduct($id){
-
-    // $getOldData = ['data' => $this->model('DataProducts')->getDataProdukId($id) ]  ;
-    // var_dump($getOldData);
-
-    // $img_produk_old = $getOldData['img_produk'] ;
-    // var_dump($img_produk_old);
-    // $img_provinsi_old = $getOldData['img_provinsi'] ;
-
-    // unlink('../public/assets/produks/gambar-products/'.$img_produk_old);
-    // unlink('../public/assets/produks/gambar-provinsi/'.$img_provinsi_old);
-
-    // $this->model('DataProducts')->deleteDataProduct($id);
-
 
     $dataProducts = $this->model('DataProducts')->showProducts();
 
@@ -78,16 +71,22 @@ class ProductsController extends Controller {
     $nama_produk = $_POST['nama_produk'];
     $tanggal = $_POST['tanggal'];
     $harga = $_POST['harga'];
-    $provinsi = $_POST['provinsi'];
+    $provinsi = ucwords( $_POST['provinsi']);
     $detail_lokasi = $_POST['detail_lokasi'];
     
     $img_produk_new = $_FILES['img_produk']['name'];
     $img_provinsi_new = $_FILES['img_provinsi']['name'];
 
-    $getOldData = ['data' => $this->model('DataProducts')->getDataProdukId($id) ]  ;
+    $getOldData = $this->model('DataProducts')->showProducts();
 
-    $img_produk_old = $getOldData['img_produk'] ;
-    $img_provinsi_old = $getOldData['img_provinsi'] ;
+    foreach ($getOldData as $produk){ 
+
+          if( $produk['id_produk'] == $id){
+
+            $img_produk_old = $produk['img_produk'] ;
+            $img_provinsi_old = $produk['img_provinsi'] ;
+          }
+     }
 
 
     if($img_produk_new != null){

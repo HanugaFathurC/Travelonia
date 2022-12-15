@@ -2,7 +2,12 @@
 
 class OrderController extends Controller {
   public function index(){
-    return $this->view('order');
+
+    $id = $_GET['id'];
+
+    $data_product_selected = $this->model('DataOrder')->getDataProdukId($id) ;
+
+    return $this->view('order', ['data-produk' => $data_product_selected]);
   }
 }
 
