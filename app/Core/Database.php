@@ -148,6 +148,20 @@ class Database {
     return $reply ;
   }
 
+  /*Get Profile */
+
+  public function getAdminProfile($username){
+    $sql = "SELECT * FROM admin WHERE username = '$username' " ;
+    return $this->mysqli->query($sql)->fetch_assoc() ;
+
+  }
+
+  public function updateAdminProfile($ava, $nama, $username, $pass, $alamat){
+    $sql = "UPDATE admin SET  nama_admin='$nama' , username='$username', password='$pass', alamat='$alamat' , avatar='$ava' WHERE username = '$username'";
+    return $this->mysqli->query($sql);
+
+  }
+
   
   /* Login */
 

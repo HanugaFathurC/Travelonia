@@ -23,6 +23,8 @@
                      <label for="password">Password</label>
                    </div>
                    <br/>
+                   <?php if( isset($_SESSION['error']) ) { echo "<p>Username atau Password salah </p>" ;} ?>
+                   <?php unset($_SESSION['error']);?>
                 <input type="submit" value="Sign In" class="btn btn-md text-white btn-block btn-success w-100 ">
                 <span class="d-block text-center my-4 text-muted"><u><i> Admin Area</i></u></span>
                   </a>

@@ -1,4 +1,4 @@
-<article class="container px-5 pt-5">
+<article id="destination" class="container px-5 pt-5">
         <h4 class="text-center fw-semibold custom-font-desloc" data-aos="fade-down">Top Destination</h4>
         <div class="row mx-auto row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5 costum-font ">
           <div class="col">

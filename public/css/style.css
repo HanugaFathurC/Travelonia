@@ -224,3 +224,17 @@ ul.nav-links li:hover a {
   }
 }
 
+
+/* Profile */
+
+img.costume-img-profile{
+  width: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+  img.costume-img-profile{
+    width: 50px;
+  }
+
+
+}

@@ -9,8 +9,8 @@
         
         <div class="col py-3">
           <div class="card">
-            <h1 class="card-header mb-4">Transactions</h1>
-            <div class="card-body">
+            <h1 class="card-header bg-info text-white mb-4">Transactions</h1>
+            <div class="card-body ">
                 <div class="table-responsive ">
                     <table class="table text-center table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
